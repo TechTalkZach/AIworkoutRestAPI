@@ -52,13 +52,13 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>7-Min AI Workout Quickstart</title>
+        <title> 7 Minute Workout Generator AI</title>
         <link rel="icon" href="/robot_icon.png" />
       </Head>
 
       <main className={styles.main}>
         <img src="/robot_icon.png" className={styles.icon} />
-        <h3>7-Min AI Workout Generator</h3>
+        <h3> 7 Minute Workout Generator AI </h3>
         <form onSubmit={onSubmit}>
         <label>Weight</label>
           <input

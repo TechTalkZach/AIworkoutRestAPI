@@ -1,7 +1,21 @@
-# OpenAI API Quickstart - Node.js example app
+# 7 Minute Workout Generator AI- Node.js
 
-This is an example pet name generator app used in the OpenAI API [quickstart tutorial](https://beta.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+This is a Workout generator app used in the OpenAI API [quickstart tutorial](https://beta.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+## Usage
 
+The AI can be accessed using a mobile device or web browser tailor to the user, After selecting the age, weight, height and goal, the user will be presented with a list of exercises to complete. 
+
+## Features
+
+- Generates 12 exercises for a 7 minute workout
+- Allows for customization based on some characteristics
+- Accessible on mobile devices and web browsers
+
+## System Requirements
+
+- Internet connection
+- Web browser 
+- Mobile device 
 ## Setup
 
 1. If you don’t have Node.js installed, [install it from here](https://nodejs.org/en/) (Node.js version >= 14.6.0 required)
