@@ -10,17 +10,22 @@ export default function Home() {
   const [inch, setInch] = useState(10);
   const [goal, setGoal] = useState("lose weight");
 
+  const [loading,setLoading]= useState(false)
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
     event.preventDefault();
+    if (loading){
+      return;
+    }
+    setLoading(true)
     try {
-      const response = await fetch("/api/generate", {
+      const response = await fetch("/api/generate-workout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ animal: animalInput }),
+        body: JSON.stringify({ weight, age, ft, inch, goal }),
       });
 
       const data = await response.json();
@@ -28,12 +33,19 @@ export default function Home() {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
 
-      setResult(data.result);
-      setAnimalInput("");
+      setResult(data.result.replaceAll('\n',"<br />"));
+
+      setWeight("");
+      setAge("");
+      setFt("");
+      setInch("");
+      setGoal("");
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
+    } finally{
+      setLoading(false);
     }
   }
 
@@ -46,13 +58,13 @@ export default function Home() {
 
       <main className={styles.main}>
         <img src="/robot_icon.png" className={styles.icon} />
-        <h3>Workout Generator</h3>
+        <h3>7-Min AI Workout Generator</h3>
         <form onSubmit={onSubmit}>
         <label>Weight</label>
           <input
             type="number"
             min={1}
-            max={99}
+            max={500}
             name="weight"
             placeholder="Enter the weight"
             value={weight}
@@ -63,14 +75,14 @@ export default function Home() {
           <input
             type="number"
             min={1}
-            max={99}
+            max={200}
             name="age"
             placeholder="Enter the age"
             value={age}
             onChange={(e) => setAge(Number.parseInt(e.target.value))}
           />
 
-          <label>Height</label>
+          <label>Height feet</label>
           <input
             type="number"
             min={1}
@@ -80,27 +92,38 @@ export default function Home() {
             onChange={(e) => setFt(Number.parseInt(e.target.value))}
           />
 
-          <label>Height</label>
+          <label>Height Inch</label>
           <input
             type="number"
             min={1}
             name="in"
             placeholder="10in"
             value={inch}
-            onChange={(e) => setPriceMax(Number.parseInt(e.target.value))}
+            onChange={(e) => setInch(Number.parseInt(e.target.value))}
           />
 
-          <label>Hobbies</label>
+          <label>Goals</label>
           <input
             type="text"
             name="goal"
             placeholder="Lose weight or improve strength, balance ...."
             value={goal}
-            onChange={(e) => setHobbies(e.target.value)}
+            onChange={(e) => setGoal(e.target.value)}
           />
           <input type="submit" value="Generate Workout" />
         </form>
-        <div className={styles.result}>{result}</div>
+        {loading && (
+          <div>
+            <h3> Looking for the perfect 7-Min AI Workout 💡</h3>
+            <img src="/workout.gif" className={styles.loading} />
+          </div>
+        )}
+        {result &&(
+          <div
+           className={styles.result}
+           dangerouslySetInnerHTML={{ __html: result }}
+         />
+        )}  
       </main>
     </div>
   );
