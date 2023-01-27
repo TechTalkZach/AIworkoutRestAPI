@@ -33,8 +33,8 @@ export default async function (req, res) {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: generatePrompt(weight,age,ft,inch,goal),
-      temperature: 0.6,
-      max_tokens: 2048,
+      temperature: 0.7,
+      max_tokens: 200,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {
@@ -55,5 +55,5 @@ export default async function (req, res) {
 
 function generatePrompt(weight,age,ft,inch,goal) {
   return `Suggest a 12-exercise workout to ${goal} that can be done from home in sections of 30 seconds 
-  for a ${age} years old person that weighs ${weight}lb and has a height of ${ft}ft and ${inch}in`;
+  for a ${age} years old person that weighs ${weight}lb and has a height of ${ft}ft and ${inch}in. only workout names,no description`;
 }
