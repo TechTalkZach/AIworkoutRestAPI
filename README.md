@@ -1,6 +1,7 @@
 # 7 Minute Workout Generator AI- Node.js
 
 This is a Workout generator app used in the OpenAI API [quickstart tutorial](https://beta.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+ ![7 Minute Workout Generator AI](./public/showapp.png)
 ## Usage
 
 The AI can be accessed using a mobile device or web browser tailor to the user, After selecting the age, weight, height and goal, the user will be presented with a list of exercises to complete. 
